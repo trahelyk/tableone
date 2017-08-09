@@ -1,0 +1,40 @@
+---
+title: "Testing the new tableone package"
+author: "Kyle Hart"
+date: "`r format(Sys.Date())`"
+output:
+  html_document:
+    code_folding: hide
+    highlight: pygments
+    keep_md: yes
+    number_sections: yes
+    smart: no
+    theme: yeti
+    toc: yes
+    toc_float: yes
+    fig_caption: yes
+---
+
+```{r setup, include=FALSE}
+rm(list=ls()) # Clear the workspace
+cat("\014") # Clear console
+source("../md.R")
+source("../misc.R")
+source("../tableone.R")
+
+library("JM")
+library("Hmisc")
+library("knitr")
+```
+
+```{r results="asis"}
+foo <- apply.labels(aids[,c("death", "CD4", "drug", "gender", "prevOI", "AZT")],
+                    c("Died", "CD4", "Group", "Gender", "Previous OI", "AZT"))
+
+md(tidy.tableone(df = foo,
+                 grpvar="drug",
+                 caption = "Table\\: Clinical characteristics."))
+
+# x <- tidy.tableone(df = foo, grpvar="drug")
+
+```

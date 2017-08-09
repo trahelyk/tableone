@@ -1,0 +1,20 @@
+Package: tableone
+Type: Package
+Title: Table One
+Version: 0.1.0
+Author: Kyle Hart
+Maintainer: Kyle Hart <kylehart@trahelyk.com>
+Imports: Hmisc, knitr, xtable
+Description: The table.one() function produces summary statistics and performs hypothesis tests for all variables in a supplied data frame, 
+and it wraps the results in LaTeX or RMarkdown and documents the tests used for each variable in the table’s footnotes.
+    The function automatically detects whether each variable in the supplied data frame is continuous or categorical. 
+If the variable is continuous, and the distance between the mean and median is > 0.25 standard deviations, the function performs a
+Wilcoxon rank-sum test and presents the median and inter-quartile range; otherwise, it performs a t-test and presents the mean and 
+standard deviation. If the variable is categorical, the function presents a frequency table and performs a chi-squared test when expected 
+cell counts are all at least 5 or a Fisher’s exact test when any cell count < 5. Alternatively, the user can specify which test to use for
+each column instead of allowing these algorithms to make the decision. 
+    The user can specify the grouping variable, precision of continuous variables, precision of p-values, the table’s caption, and 
+the LaTeX label and font size.
+License: GNU General Public License v3 (GPL-3)
+Encoding: UTF-8
+LazyData: true

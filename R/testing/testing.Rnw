@@ -1,0 +1,42 @@
+\documentclass[noae]{analysis}
+\usepackage{array}
+\usepackage{hyphenat}
+\usepackage{longtable}
+\usepackage{dcolumn}
+\title{Testing the new tableone package}
+\author{Kyle Hart}
+\date{\Sexpr{format(Sys.time(), "%Y.%m.%d %H:%M")}}
+\begin{document}
+\pagenumbering{arabic}
+\maketitle
+
+<<echo=FALSE, include=FALSE>>=
+rm(list=ls()) # Clear the workspace
+cat("\014") # Clear console
+source("../latex.R")
+source("../misc.R")
+source("../tableone.R")
+
+# source("R/latex.R")
+# source("R/misc.R")
+# source("R/tableone.R")
+
+library("JM")
+library("Hmisc")
+library("knitr")
+library("xtable")
+@
+
+<<results="asis">>=
+foo <- apply.labels(aids[,c("death", "CD4", "drug", "gender", "prevOI", "AZT")],
+                    c("Died", "CD4", "Group", "Gender", "Previous OI", "AZT"))
+
+tex.tableone(tidy.tableone(df = foo,
+                           grpvar="drug",
+                           testTypes = rep("t", 6),
+                           caption = "Clinical characteristics."))
+
+@
+
+
+\end{document}

@@ -1,0 +1,108 @@
+\documentclass[noae]{analysis}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{array}
+\usepackage{hyphenat}
+\usepackage{longtable}
+\usepackage{dcolumn}
+\title{Sample size calculation for estrogen and urine microbiome study}
+\author{Kyle Hart}
+\date{2017.04.20 12:53}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\pagenumbering{arabic}
+\maketitle
+
+
+
+\begin{kframe}
+\begin{alltt}
+\hlstd{foo} \hlkwb{<-} \hlkwd{apply.labels}\hlstd{(aids[,}\hlkwd{c}\hlstd{(}\hlstr{"death"}\hlstd{,} \hlstr{"CD4"}\hlstd{,} \hlstr{"drug"}\hlstd{,} \hlstr{"gender"}\hlstd{,} \hlstr{"prevOI"}\hlstd{,} \hlstr{"AZT"}\hlstd{)],}
+                    \hlkwd{c}\hlstd{(}\hlstr{"Died"}\hlstd{,} \hlstr{"CD4"}\hlstd{,} \hlstr{"Group"}\hlstd{,} \hlstr{"Gender"}\hlstd{,} \hlstr{"Previous OI"}\hlstd{,} \hlstr{"AZT"}\hlstd{))}
+
+\hlkwd{tex.tableone}\hlstd{(}\hlkwd{tidy.tableone}\hlstd{(}\hlkwc{df} \hlstd{= foo,}
+                           \hlkwc{grpvar}\hlstd{=}\hlstr{"drug"}\hlstd{,}
+                           \hlkwc{testTypes} \hlstd{=} \hlkwd{rep}\hlstd{(}\hlstr{"t"}\hlstd{,} \hlnum{6}\hlstd{),}
+                           \hlkwc{caption} \hlstd{=} \hlstr{"Clinical characteristics."}\hlstd{))}
+\end{alltt}
+\end{kframe}% latex table generated in R 3.3.2 by xtable 1.8-2 package
+% Thu Apr 20 12:53:59 2017
+\begin{table}[H]
+\centering
+\caption{Clinical characteristics.} 
+\label{o4rf0t9g4}
+\begingroup\footnotesize
+\begin{tabular}{lrrrrr}
+  \hline
+  & {\bf n} & {\bf ddC (n=717)} & {\bf ddI (n=688)} & {\bf Combined (n=1405)} & {\bf p} \\ 
+  \hline
+Died & 1405 & 0.3 $\pm$ 0.4 & 0.3 $\pm$ 0.5 & 0.3 $\pm$ 0.5 & 0.23$^a$ \\ 
+  CD4 & 1405 & 6.7 $\pm$ 4.9 & 7.3 $\pm$ 5 & 7 $\pm$ 5 & 0.027$^a$ \\ 
+  Gender & 1405 &   &   &   & 0.729$^b$ \\ 
+   - female &   & 9\% (62) & 8\% (55) & 8\% (117) &   \\ 
+   - male &   & 91\% (655) & 92\% (633) & 92\% (1288) &   \\ 
+  Previous OI & 1405 &   &   &   & 0.577$^b$ \\ 
+   - noAIDS &   & 38\% (271) & 39\% (271) & 39\% (542) &   \\ 
+   - AIDS &   & 62\% (446) & 61\% (417) & 61\% (863) &   \\ 
+  AZT & 1405 &   &   &   & 0.182$^b$ \\ 
+   - intolerance &   & 63\% (454) & 67\% (460) & 65\% (914) &   \\ 
+   - failure &   & 37\% (263) & 33\% (228) & 35\% (491) &   \\ 
+   \hline
+\multicolumn{6}{l}{\em x $\pm$ x indicates mean $\pm$ standard deviation.}\\
+\multicolumn{6}{l}{\em $^a$ Student's t-test (two-sided)}\\
+\multicolumn{6}{l}{\em $^b$ Pearson's chi-squared test}
+\end{tabular}
+\endgroup
+\end{table}
+
+
+
+\end{document}
